@@ -1,0 +1,1 @@
+personal termianl config
