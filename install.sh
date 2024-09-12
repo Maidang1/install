@@ -141,5 +141,69 @@ echo "Starship configuration has been updated successfully!"
 
 
 
+# 统计代码行数
+brew install tokei
+
+brew install git-delta
+
+# Create or update Git configuration
+cat > ~/.gitconfig << EOL
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+[init]
+defaultBranch = master
+[i18n]
+commitEncoding = utf-8
+logOutputEncoding = utf-8
+
+[core]
+pager = delta
+
+[interactive]
+diffFilter = delta --color-only
+
+[delta]
+navigate = true # use n and N to move between diff sections
+light = false   # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+side-by-side = true
+[merge]
+conflictstyle = diff3
+
+[pager]
+blame = delta
+[color "blame"]
+added = green
+modified = yellow
+removed = red
+[rerere]
+enabled = true
+[column]
+ui = auto
+
+[diff]
+tool = difftastic
+
+[difftool]
+prompt = false
+
+[difftool "difftastic"]
+cmd = difft "\$LOCAL" "\$REMOTE"
+
+[pager]
+difftool = true
+
+[alias]
+dft = difftool
+[pull]
+	rebase = true
+EOL
+
+echo "Git configuration has been updated successfully!"
+
+
+
 echo "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
 
