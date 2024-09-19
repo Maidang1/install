@@ -207,3 +207,6 @@ echo "Git configuration has been updated successfully!"
 
 echo "Please restart your terminal or run 'source ~/.zshrc' to apply changes."
 
+brew install MonitorControl
+
+
